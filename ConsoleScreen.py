@@ -22,7 +22,7 @@ class ConsoleScreen:
         self.pixel = self.shade["full"]
 
         self.field = [[self.background for x in range(self.width)] for y in range(self.height)]
-        logging.basicConfig(filename='ConsoleDraw.log', level=logging.INFO, filemode='w')
+        logging.basicConfig(filename='ConsoleScreen.log', level=logging.INFO, filemode='w')
 
     def clearField(self):
         self.field = [[self.background for x in range(self.width)] for y in range(self.height)]
@@ -114,47 +114,6 @@ class ConsoleScreen:
         l1 = self.drawLine(triangle[0], triangle[1], shade)
         l2 = self.drawLine(triangle[1], triangle[2], shade)
         l3 = self.drawLine(triangle[2], triangle[0], shade)
-
-        if fill:
-            p1, p2, p3 = triangle
-            x1, y1, x2, y2, x3, y3 = *p1, *p2, *p3
-            d1 = len(l1)
-            d2 = len(l2)
-            d3 = len(l3)
-
-            if (((d1 < d2) or (d1==d2)) and ((d1 < d2) or (d1==d2))):
-                tx = x1
-                ty = y1
-                vx = (x2 - x1) / d1
-                vy = (y2 - y1) / d1
-                counter = 0
-                while (counter < d1):
-                    self.drawLine((x3, y3),(tx, ty))
-                    tx = tx + vx
-                    ty = ty + vy
-                    counter = counter + 1
-            elif ((d2 < d3) or (d2==d3)):
-                tx = x2
-                ty = y2
-                vx = (x3 - x2) / d2
-                vy = (y3 - y2) / d2
-                counter = 0
-                while (counter < d2):
-                    self.drawLine((x1, y1),(tx, ty))
-                    tx = tx + vx
-                    ty = ty + vy
-                    counter = counter + 1
-            else:
-                tx = x3
-                ty = y3
-                vx = (x1 - x3) / d3
-                vy = (y1 - y3) / d3
-                counter = 0
-                while (counter < d3):
-                    self.drawLine((x2, y2), (tx, ty))
-                    tx = tx + vx
-                    ty = ty + vy
-                    counter = counter + 1
 
     def drawCircle(self, xy, r, shade=False, draw=True):  # Draws circle with radius "r" from midpoint "xy".
         xc, yc = xy
